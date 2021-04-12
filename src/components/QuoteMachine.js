@@ -18,13 +18,15 @@ class QuoteMachine extends Component {
 	}
 
 	newQuote() {
-		const API_URI = 'https://goquotes-api.herokuapp.com/api/v1/random?count=1';
+		const API_URI = 'https://gist.githubusercontent.com/camperbot/5a022b72e96c4c9585c32bf6a75f62d9/raw/e3c6895ce42069f0ee7e991229064f167fe8ccdc/quotes.json';
 		fetch(API_URI)
 			.then(response => response.json())
 			.then(data => {
-				const main_quote = data.quotes[0];
+				const randomIndex = Math.floor(Math.random() * 102);
+				const main_quote = data.quotes[randomIndex];
+				this.quoteList = data.quotes;
 				this.setState({
-					quote: main_quote.text,
+					quote: main_quote.quote,
 					author: main_quote.author
 				});
 			});
@@ -52,27 +54,3 @@ class QuoteMachine extends Component {
 
 export default QuoteMachine;
 
-
-
-
-/*
-
-id="quote-box" // wrapper
-	id="text" // element
-	id="author" // element
-	id="new-quote" // clickable-element
-	id="tweet-quote" // clickable a tag
-
-Scenario:
-	First Load:
-		-quote machine displays random quote targeting id="text"
-		-with quote author targeting id="author"
-	#new-quote was clicked:
-		-quote machine should fetch a new quote with it's author
-	Click of tweet quote:
-		-should be able to tweet the quote with twitter.com/intent/tweet
-
-Condition:
-	-#quote-box must be centered
-
-*/

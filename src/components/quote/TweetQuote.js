@@ -14,7 +14,7 @@ function TweetQuote(props) {
             <a id="tweet-quote" href={tweetEncode} target="_top" title="Tweet this quote">
                 <span>
                     <br />
-                    <i class="fab fa-twitter fa-2x circle-logo"></i>
+                    <i className="fab fa-twitter fa-2x circle-logo"></i>
                 </span>
             </a>
         </div>
